@@ -21,10 +21,21 @@ namespace SlotMachine
 You can play 1 line for $1 and up to ${GRID} and up to {GRID} lines for 'Horizontal' and 'Vertical' up to 2 lines for 'Diagonal'
 Choose your wager and lines to play!
 Enter your wager:");
-                
-                char input = Console.ReadKey().KeyChar;
+
+                int wage = 0;
+                try
+                {
+                    wage = Convert.ToInt32(Console.ReadLine());
+                    
+                }
+                catch (Exception)
+                {   
+                    Console.Clear();
+                    Console.WriteLine("You need to enter a number.\nTry again.");
+                    continue;
+                }
+
                 Console.Clear();
-                int wage = int.Parse(input.ToString());
                 Console.WriteLine("Choose which lines to play");
                 Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
                 char line = Console.ReadKey().KeyChar;
@@ -45,7 +56,9 @@ Enter your wager:");
                         Console.Write($"{slotNumbers[row, column]}   ");
 
                         vertical.Add(slotNumbers[row, column]);
-                        if (line == 'h') {
+
+                        if (line == 'h')
+                        {
                             if (slotNumbers[row, 0] == slotNumbers[row, column])
                             {
                                 horizontalCount++;
@@ -55,12 +68,10 @@ Enter your wager:");
                                 horizontalLinesWon++;
                             }
                         }
-                        
                     }
                     horizontalCount = 0;
                     Console.WriteLine("\n");
                 }
-                
                 
                 Console.WriteLine($"\nYou have bet ${wage}");
 
