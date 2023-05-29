@@ -31,38 +31,37 @@ Enter your wager:");
                 char line = Console.ReadKey().KeyChar;
                 Console.Clear();
 
-                int row = 0;
                 int horizontalLinesWon = 0;
+                int horizontalCount = 0;
 
-                for (int i = 0; i < slotNumbers.GetLength(0); i++)
+                for (int row = 0; row < slotNumbers.GetLength(0); row++)
                 {
-                    for (int j = 0; j < slotNumbers.GetLength(1); j++)
+                    
+                    for (int column = 0; column < slotNumbers.GetLength(1); column++)
                     {
                         int randomNum = rng.Next(MAX_RANDOM_NUM);
-                        if (row == slotNumbers.GetLength(0))
+                       
+                        slotNumbers[row, column] = randomNum;
+
+                        Console.Write($"{slotNumbers[row, column]}   ");
+
+                        vertical.Add(slotNumbers[row, column]);
+                        if (slotNumbers[row,0] == slotNumbers[row,column])
                         {
-                            Console.WriteLine("\n");
-                            row = 0;
+                           horizontalCount++;
                         }
-                        slotNumbers[i, j] = randomNum;
-                        Console.Write($"{slotNumbers[i, j]}   ");
-                        row++;
-                        vertical.Add(slotNumbers[i, j]);
-                        horizontal.Add(slotNumbers[i, j]);
+                        if (horizontalCount == 3) {
+                            horizontalLinesWon++;
+                        }
                     }
-                    // horizontal
-                    if (horizontalLinesWon == wage)
-                    {
-                        continue;
-                    }
-                    if (horizontal.All(n => n == horizontal[0]))
-                    {
-                        horizontalLinesWon++;
-                    }
-                    horizontal.Clear();
-
+                    horizontalCount = 0;
+                    Console.WriteLine("\n");
                 }
+                for (int i = 0; i < slotNumbers.GetLength(0); i ++)
+                {
 
+                    Console.WriteLine(i);
+                }
                 // diagonal
                 int diagonalLinesWon = 0;
                 int diagCount = 0;
@@ -101,13 +100,13 @@ Enter your wager:");
                 // vertical 
                 int verticalLinesWon = 0;
                 int verticalCount = 0;
-                for (int i = 0; i < vertical.Count; i += 3)
+                for (int column = 0; column < vertical.Count; column += 3)
                 {
                     if (verticalLinesWon == wage)
                     {
                         break;
                     }
-                    if (vertical[0] == vertical[i])
+                    if (vertical[0] == vertical[column])
                     {
                         verticalCount++;
                     }
@@ -117,13 +116,13 @@ Enter your wager:");
                     }
                 }
                 verticalCount = 0;
-                for (int i = 1; i < vertical.Count; i += 3)
+                for (int column = 1; column < vertical.Count; column += 3)
                 {
                     if (verticalLinesWon == wage)
                     {
                         break;
                     }
-                    if (vertical[1] == vertical[i])
+                    if (vertical[1] == vertical[column])
                     {
                         verticalCount++;
                     }
@@ -133,13 +132,13 @@ Enter your wager:");
                     }
                 }
                 verticalCount = 0;
-                for (int i = 2; i < vertical.Count; i += 3)
+                for (int column = 2; column < vertical.Count; column += 3)
                 {
                     if (verticalLinesWon == wage)
                     {
                         break;
                     }
-                    if (vertical[2] == vertical[i])
+                    if (vertical[2] == vertical[column])
                     {
                         verticalCount++;
                     }
