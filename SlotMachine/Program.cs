@@ -11,7 +11,6 @@ namespace SlotMachine
             int[,] slotNumbers = new int[GRID, GRID];
             Random rng = new Random();
 
-            List<int> horizontal = new List<int>();
             List<int> vertical = new List<int>();
 
             char question = 'y';
@@ -46,107 +45,23 @@ Enter your wager:");
                         Console.Write($"{slotNumbers[row, column]}   ");
 
                         vertical.Add(slotNumbers[row, column]);
-                        if (slotNumbers[row,0] == slotNumbers[row,column])
-                        {
-                           horizontalCount++;
+                        if (line == 'h') {
+                            if (slotNumbers[row, 0] == slotNumbers[row, column])
+                            {
+                                horizontalCount++;
+                            }
+                            if (horizontalCount == 3)
+                            {
+                                horizontalLinesWon++;
+                            }
                         }
-                        if (horizontalCount == 3) {
-                            horizontalLinesWon++;
-                        }
+                        
                     }
                     horizontalCount = 0;
                     Console.WriteLine("\n");
                 }
-                for (int i = 0; i < slotNumbers.GetLength(0); i ++)
-                {
-
-                    Console.WriteLine(i);
-                }
-                // diagonal
-                int diagonalLinesWon = 0;
-                int diagCount = 0;
-                for (int i = 0; i < vertical.Count; i += 4)
-                {
-                    if (diagonalLinesWon == wage)
-                    {
-                        break;
-                    }
-                    if (vertical[0] == vertical[i])
-                    {
-                        diagCount++;
-                    }
-                    if (diagCount == WIN_LINE)
-                    {
-                        diagonalLinesWon++;
-                    }
-                }
-                diagCount = 0;
-
-                for (int i = 2; i < vertical.Count - 2; i += 2)
-                {
-                    if (diagonalLinesWon == wage)
-                    {
-                        break;
-                    }
-                    if (vertical[2] == vertical[i])
-                    {
-                        diagCount++;
-                    }
-                    if (diagCount == WIN_LINE)
-                    {
-                        diagonalLinesWon++;
-                    }
-                }
-                // vertical 
-                int verticalLinesWon = 0;
-                int verticalCount = 0;
-                for (int column = 0; column < vertical.Count; column += 3)
-                {
-                    if (verticalLinesWon == wage)
-                    {
-                        break;
-                    }
-                    if (vertical[0] == vertical[column])
-                    {
-                        verticalCount++;
-                    }
-                    if (verticalCount == WIN_LINE)
-                    {
-                        verticalLinesWon++;
-                    }
-                }
-                verticalCount = 0;
-                for (int column = 1; column < vertical.Count; column += 3)
-                {
-                    if (verticalLinesWon == wage)
-                    {
-                        break;
-                    }
-                    if (vertical[1] == vertical[column])
-                    {
-                        verticalCount++;
-                    }
-                    if (verticalCount == WIN_LINE)
-                    {
-                        verticalLinesWon++;
-                    }
-                }
-                verticalCount = 0;
-                for (int column = 2; column < vertical.Count; column += 3)
-                {
-                    if (verticalLinesWon == wage)
-                    {
-                        break;
-                    }
-                    if (vertical[2] == vertical[column])
-                    {
-                        verticalCount++;
-                    }
-                    if (verticalCount == WIN_LINE)
-                    {
-                        verticalLinesWon++;
-                    }
-                }
+                
+                
                 Console.WriteLine($"\nYou have bet ${wage}");
 
                 if (line == 'h')
@@ -155,14 +70,104 @@ Enter your wager:");
 You have won ${horizontalLinesWon}
 Your total is ${horizontalLinesWon + horizontalLinesWon}");
                 }
+
+                // vertical 
+                int verticalLinesWon = 0;
+                int verticalCount = 0;
                 if (line == 'v')
                 {
+                    
+                    for (int column = 0; column < vertical.Count; column += 3)
+                    {
+                        if (verticalLinesWon == wage)
+                        {
+                            break;
+                        }
+                        if (vertical[0] == vertical[column])
+                        {
+                            verticalCount++;
+                        }
+                        if (verticalCount == WIN_LINE)
+                        {
+                            verticalLinesWon++;
+                        }
+                    }
+                    verticalCount = 0;
+                    for (int column = 1; column < vertical.Count; column += 3)
+                    {
+                        if (verticalLinesWon == wage)
+                        {
+                            break;
+                        }
+                        if (vertical[1] == vertical[column])
+                        {
+                            verticalCount++;
+                        }
+                        if (verticalCount == WIN_LINE)
+                        {
+                            verticalLinesWon++;
+                        }
+                    }
+                    verticalCount = 0;
+                    for (int column = 2; column < vertical.Count; column += 3)
+                    {
+                        if (verticalLinesWon == wage)
+                        {
+                            break;
+                        }
+                        if (vertical[2] == vertical[column])
+                        {
+                            verticalCount++;
+                        }
+                        if (verticalCount == WIN_LINE)
+                        {
+                            verticalLinesWon++;
+                        }
+                    }
                     Console.WriteLine(@$"You have {verticalLinesWon} winning lines.
 You have won ${verticalLinesWon}
 Your total is ${verticalLinesWon + verticalLinesWon}");
                 }
+
+                // diagonal
+                int diagonalLinesWon = 0;
+                int diagCount = 0;
                 if (line == 'd')
                 {
+                    
+                    
+                    for (int i = 0; i < vertical.Count; i += 4)
+                    {
+                        if (diagonalLinesWon == wage)
+                        {
+                            break;
+                        }
+                        if (vertical[0] == vertical[i])
+                        {
+                            diagCount++;
+                        }
+                        if (diagCount == WIN_LINE)
+                        {
+                            diagonalLinesWon++;
+                        }
+                    }
+                    diagCount = 0;
+
+                    for (int i = 2; i < vertical.Count - 2; i += 2)
+                    {
+                        if (diagonalLinesWon == wage)
+                        {
+                            break;
+                        }
+                        if (vertical[2] == vertical[i])
+                        {
+                            diagCount++;
+                        }
+                        if (diagCount == WIN_LINE)
+                        {
+                            diagonalLinesWon++;
+                        }
+                    }
                     Console.WriteLine(@$"You have {diagonalLinesWon} winning lines.
 You have won ${diagonalLinesWon}
 Your total is ${diagonalLinesWon + diagonalLinesWon}");
