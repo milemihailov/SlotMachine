@@ -72,7 +72,7 @@ Enter your wager:");
                     horizontalCount = 0;
                     Console.WriteLine("\n");
                 }
-                
+                ///
                 Console.WriteLine($"\nYou have bet ${wage}");
 
                 if (line == 'h')
