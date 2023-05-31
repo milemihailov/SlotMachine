@@ -13,14 +13,14 @@ namespace SlotMachine
 
             char question = 'y';
 
-            while (question == 'y')
-            {
-                Console.WriteLine(@$"Hello you can choose to play 'Horizontal', 'Vertical' and 'Diagonal' lines.
+            Console.WriteLine(@$"Hello you can choose to play 'Horizontal', 'Vertical' and 'Diagonal' lines.
 You can play 1 line for $1 and up to ${GRID} and up to {GRID} lines for 'Horizontal' and 'Vertical' up to 2 lines for 'Diagonal'
 Choose your wager and lines to play!
-Enter your wager:");
+Enter your wage:");
 
-                int wage = 0;
+            int wage = 0;
+            bool numIsEntered = true;
+            while (numIsEntered) {
                 try
                 {
                     wage = Convert.ToInt32(Console.ReadLine());
@@ -32,15 +32,19 @@ Enter your wager:");
                     Console.WriteLine("You need to enter a number.\nTry again.");
                     continue;
                 }
+                numIsEntered = false;
+            }
+            
+
+            while (question == 'y')
+            {
+                
 
                 Console.Clear();
                 Console.WriteLine("Choose which lines to play");
                 Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
                 char line = Console.ReadKey().KeyChar;
                 Console.Clear();
-
-                int horizontalLinesWon = 0;
-                int horizontalCount = 0;
 
                 // generating random numbers for the grid and display the grid
                 for (int row = 0; row < slotNumbers.GetLength(0); row++)
@@ -56,13 +60,16 @@ Enter your wager:");
                     }
                     Console.WriteLine("\n");
                 }
-
                 Console.WriteLine($"\nYou have bet ${wage}");
+
                 // horizontal
+                int horizontalLinesWon = 0;
+                int horizontalCount = 0;
                 if (line == 'h')
                 {
-                    for( int row = 0; row < slotNumbers.GetLength(0); row++) {
-                        for( int column = 0;column < slotNumbers.GetLength(1); column++)
+                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
+                    {
+                        for (int column = 0; column < slotNumbers.GetLength(1); column++)
                         {
                             if (slotNumbers[row, 0] == slotNumbers[row, column])
                             {
@@ -115,11 +122,11 @@ Your total is ${verticalLinesWon + verticalLinesWon}");
                     int column = GRID - 1;
                     for (int row = 0; row < slotNumbers.GetLength(0); row++)
                     {
-                        if (slotNumbers[0,0] == slotNumbers[row, row])
+                        if (slotNumbers[0, 0] == slotNumbers[row, row])
                         {
                             firstDiagCountLine++;
                         }
-                        if (slotNumbers[0,GRID-1] == slotNumbers[row, column])
+                        if (slotNumbers[0, GRID - 1] == slotNumbers[row, column])
                         {
                             secondDiagonalCountLine++;
                         }
