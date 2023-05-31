@@ -11,8 +11,6 @@ namespace SlotMachine
             int[,] slotNumbers = new int[GRID, GRID];
             Random rng = new Random();
 
-            List<int> vertical = new List<int>();
-
             char question = 'y';
 
             while (question == 'y')
@@ -26,10 +24,10 @@ Enter your wager:");
                 try
                 {
                     wage = Convert.ToInt32(Console.ReadLine());
-                    
+
                 }
                 catch (Exception)
-                {   
+                {
                     Console.Clear();
                     Console.WriteLine("You need to enter a number.\nTry again.");
                     continue;
@@ -44,20 +42,27 @@ Enter your wager:");
                 int horizontalLinesWon = 0;
                 int horizontalCount = 0;
 
+                // generating random numbers for the grid and display the grid
                 for (int row = 0; row < slotNumbers.GetLength(0); row++)
                 {
-                    
                     for (int column = 0; column < slotNumbers.GetLength(1); column++)
                     {
                         int randomNum = rng.Next(MAX_RANDOM_NUM);
-                       
+
                         slotNumbers[row, column] = randomNum;
 
                         Console.Write($"{slotNumbers[row, column]}   ");
 
-                        vertical.Add(slotNumbers[row, column]);
+                    }
+                    Console.WriteLine("\n");
+                }
 
-                        if (line == 'h')
+                Console.WriteLine($"\nYou have bet ${wage}");
+                // horizontal
+                if (line == 'h')
+                {
+                    for( int row = 0; row < slotNumbers.GetLength(0); row++) {
+                        for( int column = 0;column < slotNumbers.GetLength(1); column++)
                         {
                             if (slotNumbers[row, 0] == slotNumbers[row, column])
                             {
@@ -68,15 +73,9 @@ Enter your wager:");
                                 horizontalLinesWon++;
                             }
                         }
+                        horizontalCount = 0;
                     }
-                    horizontalCount = 0;
-                    Console.WriteLine("\n");
-                }
-                ///
-                Console.WriteLine($"\nYou have bet ${wage}");
 
-                if (line == 'h')
-                {
                     Console.WriteLine(@$"You have {horizontalLinesWon} winning lines.
 You have won ${horizontalLinesWon}
 Your total is ${horizontalLinesWon + horizontalLinesWon}");
@@ -87,53 +86,20 @@ Your total is ${horizontalLinesWon + horizontalLinesWon}");
                 int verticalCount = 0;
                 if (line == 'v')
                 {
-                    
-                    for (int column = 0; column < vertical.Count; column += 3)
+                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
                     {
-                        if (verticalLinesWon == wage)
+                        for (int column = 0; column < slotNumbers.GetLength(1); column++)
                         {
-                            break;
+                            if (slotNumbers[0, row] == slotNumbers[column, row])
+                            {
+                                verticalCount++;
+                            }
+                            if (verticalCount == WIN_LINE)
+                            {
+                                verticalLinesWon++;
+                            }
                         }
-                        if (vertical[0] == vertical[column])
-                        {
-                            verticalCount++;
-                        }
-                        if (verticalCount == WIN_LINE)
-                        {
-                            verticalLinesWon++;
-                        }
-                    }
-                    verticalCount = 0;
-                    for (int column = 1; column < vertical.Count; column += 3)
-                    {
-                        if (verticalLinesWon == wage)
-                        {
-                            break;
-                        }
-                        if (vertical[1] == vertical[column])
-                        {
-                            verticalCount++;
-                        }
-                        if (verticalCount == WIN_LINE)
-                        {
-                            verticalLinesWon++;
-                        }
-                    }
-                    verticalCount = 0;
-                    for (int column = 2; column < vertical.Count; column += 3)
-                    {
-                        if (verticalLinesWon == wage)
-                        {
-                            break;
-                        }
-                        if (vertical[2] == vertical[column])
-                        {
-                            verticalCount++;
-                        }
-                        if (verticalCount == WIN_LINE)
-                        {
-                            verticalLinesWon++;
-                        }
+                        verticalCount = 0;
                     }
                     Console.WriteLine(@$"You have {verticalLinesWon} winning lines.
 You have won ${verticalLinesWon}
@@ -142,56 +108,40 @@ Your total is ${verticalLinesWon + verticalLinesWon}");
 
                 // diagonal
                 int diagonalLinesWon = 0;
-                int diagCount = 0;
+                int firstDiagCountLine = 0;
+                int secondDiagonalCountLine = 0;
                 if (line == 'd')
                 {
-                    
-                    
-                    for (int i = 0; i < vertical.Count; i += 4)
+                    int column = GRID - 1;
+                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
                     {
-                        if (diagonalLinesWon == wage)
+                        if (slotNumbers[0,0] == slotNumbers[row, row])
                         {
-                            break;
+                            firstDiagCountLine++;
                         }
-                        if (vertical[0] == vertical[i])
+                        if (slotNumbers[0,GRID-1] == slotNumbers[row, column])
                         {
-                            diagCount++;
+                            secondDiagonalCountLine++;
                         }
-                        if (diagCount == WIN_LINE)
+                        if (firstDiagCountLine == WIN_LINE)
                         {
                             diagonalLinesWon++;
                         }
+                        if (secondDiagonalCountLine == WIN_LINE)
+                        {
+                            diagonalLinesWon++;
+                        }
+                        column--;
                     }
-                    diagCount = 0;
 
-                    for (int i = 2; i < vertical.Count - 2; i += 2)
-                    {
-                        if (diagonalLinesWon == wage)
-                        {
-                            break;
-                        }
-                        if (vertical[2] == vertical[i])
-                        {
-                            diagCount++;
-                        }
-                        if (diagCount == WIN_LINE)
-                        {
-                            diagonalLinesWon++;
-                        }
-                    }
                     Console.WriteLine(@$"You have {diagonalLinesWon} winning lines.
 You have won ${diagonalLinesWon}
 Your total is ${diagonalLinesWon + diagonalLinesWon}");
-                }
 
+                }
                 Console.WriteLine("Would you like to play another one?");
                 Console.WriteLine("Choose 'y' to continue any other key to exit ");
                 question = Console.ReadKey().KeyChar;
-
-                vertical.Clear();
-                verticalLinesWon = 0;
-                horizontalLinesWon = 0;
-                diagonalLinesWon = 0;
                 Console.Clear();
             }
 
