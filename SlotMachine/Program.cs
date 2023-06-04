@@ -16,8 +16,8 @@ You can play 1 line for $1 and up to ${GRID} and up to {GRID} lines for 'Horizon
 Choose your wager and lines to play!
 Enter your wage:");
             int wage = 0;
-            bool numIsEntered = true;
-            while (numIsEntered)
+            bool numNotEntered = true;
+            while (numNotEntered)
             {
                 try
                 {
@@ -29,7 +29,7 @@ Enter your wage:");
                     Console.WriteLine("You need to enter a number.\nTry again.");
                     continue;
                 }
-                numIsEntered = false;
+                numNotEntered = false;
             }
             int total = wage;
             while (question == 'y')
