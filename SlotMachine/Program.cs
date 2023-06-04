@@ -79,7 +79,7 @@ Enter your wage:");
                             {
                                 horizontalCount++;
                             }
-                            if (horizontalCount == 3)
+                            if (horizontalCount == WIN_LINE)
                             {
                                 horizontalLinesWon++;
                                 total += (horizontalLinesWon * bet);
