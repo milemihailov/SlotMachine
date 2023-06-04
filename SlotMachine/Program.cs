@@ -34,11 +34,6 @@ Enter your wage:");
             int total = wage;
             while (question == 'y')
             {
-                if (total == 0)
-                {
-                    Console.WriteLine("You lost!");
-                    System.Environment.Exit(0);
-                }
                 Console.WriteLine($"Your total is: {total}");
                 Console.WriteLine("Enter your bet:");
                 int bet = Convert.ToInt32(Console.ReadLine());
@@ -148,6 +143,11 @@ Your total is ${total}");
                     Console.WriteLine(@$"You have {diagonalLinesWon} winning lines.
 You have won ${diagonalLinesWon * bet}
 Your total is ${total}");
+                }
+                if (total == 0)
+                {
+                    Console.WriteLine("You lost!");
+                    System.Environment.Exit(0);
                 }
                 Console.WriteLine("Would you like to play another one?");
                 Console.WriteLine("Choose 'y' to continue any other key to exit ");
