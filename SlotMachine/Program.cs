@@ -16,20 +16,15 @@ You can play 1 line for $1 and up to ${GRID} and up to {GRID} lines for 'Horizon
 Choose your wager and lines to play!
 Enter your wage:");
             int wage = 0;
-            bool numNotEntered = true;
-            while (numNotEntered)
+            bool numEntered = false;
+            while (!numEntered)
             {
-                try
+                string num = Console.ReadLine();
+                numEntered = int.TryParse(num, out wage);
+                if (!numEntered)
                 {
-                    wage = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Please enter a number:");
                 }
-                catch (Exception)
-                {
-                    Console.Clear();
-                    Console.WriteLine("You need to enter a number.\nTry again.");
-                    continue;
-                }
-                numNotEntered = false;
             }
             int total = wage;
             while (question == 'y')
