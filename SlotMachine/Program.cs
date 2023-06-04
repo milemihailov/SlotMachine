@@ -31,7 +31,16 @@ namespace SlotMachine
             {
                 Console.WriteLine($"Your total is: {total}");
                 Console.WriteLine("Enter your bet:");
-                int bet = Convert.ToInt32(Console.ReadLine());
+                bool waitForBet = false;
+                int bet = 0;
+                while (!waitForBet) { 
+                    string inputBetNum = Console.ReadLine();
+                    waitForBet = int.TryParse(inputBetNum, out bet);
+                    if (!waitForBet)
+                    {
+                        Console.WriteLine("Please enter a number:");
+                    }
+                }
                 if (bet > total)
                 {
                     Console.WriteLine("Insufficient funds");
