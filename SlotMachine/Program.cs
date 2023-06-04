@@ -19,8 +19,8 @@ namespace SlotMachine
             bool numEntered = false;
             while (!numEntered)
             {
-                string num = Console.ReadLine();
-                numEntered = int.TryParse(num, out wage);
+                string inputWageNum = Console.ReadLine();
+                numEntered = int.TryParse(inputWageNum, out wage);
                 if (!numEntered)
                 {
                     Console.WriteLine("Please enter a number:");
