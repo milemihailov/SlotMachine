@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using SlotMachine;
 namespace SlotMachine
 {
-    internal class Program
+    public static class Program
     {
         const int MAX_RANDOM_NUM = 2;
         const int GRID = 3;
@@ -11,9 +12,7 @@ namespace SlotMachine
             int[,] slotNumbers = new int[GRID, GRID];
             Random rng = new Random();
             char question = 'y';
-            Console.WriteLine("Hello you can choose to play 'Horizontal', 'Vertical' and 'Diagonal' lines.");
-            Console.WriteLine($"You can play 1 line for $1 and up to ${GRID} and up to {GRID} lines for 'Horizontal' and 'Vertical' up to 2 lines for 'Diagonal'");
-            Console.WriteLine("Choose your wager and lines to play!");
+            UiMethods.WelcomeMessage();
             Console.WriteLine("Enter your wage:");
             int wage = 0;
             bool numEntered = false;
@@ -86,9 +85,7 @@ namespace SlotMachine
                         }
                         horizontalCount = 0;
                     }
-                    Console.WriteLine($"You have {horizontalLinesWon} winning lines.");
-                    Console.WriteLine($"You have won ${horizontalLinesWon * bet}");
-                    Console.WriteLine($"Your total is ${total}");
+                    UiMethods.DisplayStats(horizontalLinesWon, total, bet);
                 }
                 // vertical 
                 int verticalLinesWon = 0;
@@ -111,9 +108,7 @@ namespace SlotMachine
                         }
                         verticalCount = 0;
                     }
-                    Console.WriteLine($"You have {verticalLinesWon} winning lines.");
-                    Console.WriteLine($"You have won ${verticalLinesWon * bet}");
-                    Console.WriteLine($"Your total is ${total}");
+                    UiMethods.DisplayStats(verticalLinesWon, total, bet);
                 }
                 // diagonal
                 int diagonalLinesWon = 0;
@@ -144,9 +139,7 @@ namespace SlotMachine
                         }
                         column--;
                     }
-                    Console.WriteLine($"You have {diagonalLinesWon} winning lines.");
-                    Console.WriteLine($"You have won ${diagonalLinesWon * bet}");
-                    Console.WriteLine($"Your total is ${total}");
+                    UiMethods.DisplayStats(diagonalLinesWon, total, bet);
                 }
                 if (total == 0)
                 {
