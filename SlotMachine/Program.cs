@@ -64,11 +64,11 @@ namespace SlotMachine
                 }
                 UiMethods.UserBet(bet);
                 // horizontal
-                LinesCheckMethods.HorizontalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
+                total = LinesCheckMethods.HorizontalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
                 // vertical
-                LinesCheckMethods.VerticalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
+                total = LinesCheckMethods.VerticalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
                 // diagonal
-                LinesCheckMethods.DiagonalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
+                total = LinesCheckMethods.DiagonalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
                 if (total == 0)
                 {
                     UiMethods.LostMessage();
