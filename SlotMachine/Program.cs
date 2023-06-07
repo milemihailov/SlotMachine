@@ -2,7 +2,7 @@
 using SlotMachine;
 namespace SlotMachine
 {
-    public static class Program
+    internal class Program
     {
         const int MAX_RANDOM_NUM = 2;
         const int GRID = 3;
@@ -13,7 +13,7 @@ namespace SlotMachine
             Random rng = new Random();
             char question = 'y';
             UiMethods.WelcomeMessage();
-            Console.WriteLine("Enter your wage:");
+            UiMethods.GuideThroughGame(UiMethods.Options.Wage);
             int wage = 0;
             bool numEntered = false;
             while (!numEntered)
@@ -22,34 +22,33 @@ namespace SlotMachine
                 numEntered = int.TryParse(inputWageNum, out wage);
                 if (!numEntered)
                 {
-                    Console.WriteLine("Please enter a number:");
+                    UiMethods.GuideThroughGame(UiMethods.Options.Number);
                 }
             }
             int total = wage;
             while (question == 'y')
             {
-                Console.WriteLine($"Your total is: {total}");
-                Console.WriteLine("Enter your bet:");
+                UiMethods.Funds(total);
+                UiMethods.GuideThroughGame(UiMethods.Options.Bet);
                 bool waitForBet = false;
                 int bet = 0;
-                while (!waitForBet) { 
+                while (!waitForBet)
+                {
                     string inputBetNum = Console.ReadLine();
                     waitForBet = int.TryParse(inputBetNum, out bet);
                     if (!waitForBet)
                     {
-                        Console.WriteLine("Please enter a number:");
+                        UiMethods.GuideThroughGame(UiMethods.Options.Number);
                     }
                 }
                 if (bet > total)
                 {
                     Console.WriteLine("Insufficient funds");
-                    Console.WriteLine($"Your total is: {total}");
                     continue;
                 }
                 total -= bet;
                 Console.Clear();
-                Console.WriteLine("Choose which lines to play");
-                Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
+                UiMethods.IntroToTheGame();
                 char line = Console.ReadKey().KeyChar;
                 Console.Clear();
                 // generating random numbers for the grid and display the grid
@@ -59,11 +58,11 @@ namespace SlotMachine
                     {
                         int randomNum = rng.Next(MAX_RANDOM_NUM);
                         slotNumbers[row, column] = randomNum;
-                        Console.Write($"{slotNumbers[row, column]}   ");
+                        UiMethods.MakingGrid(slotNumbers, row, column);
                     }
                     Console.WriteLine("\n");
                 }
-                Console.WriteLine($"\nYou have bet ${bet}");
+                UiMethods.UserBet(bet);
                 // horizontal
                 int horizontalLinesWon = 0;
                 int horizontalCount = 0;
@@ -143,13 +142,9 @@ namespace SlotMachine
                 }
                 if (total == 0)
                 {
-                    Console.WriteLine("You lost!");
-                    System.Environment.Exit(0);
+                    UiMethods.LostMessage();
                 }
-                Console.WriteLine("Would you like to play another one?");
-                Console.WriteLine("Choose 'y' to continue any other key to exit ");
-                question = Console.ReadKey().KeyChar;
-                Console.Clear();
+                UiMethods.Replay(question);
             }
         }
     }
