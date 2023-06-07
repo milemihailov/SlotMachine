@@ -7,17 +7,24 @@ namespace SlotMachine
         const int GRID = 3;
         const int WIN_LINE = 3;
         static void Main(string[] args)
-        {
+        {   // 2D array 3x3
             int[,] slotNumbers = new int[GRID, GRID];
             char question = 'y';
+            // Welcomes the user to the game
             UiMethods.WelcomeMessage();
+            // guides the user what to input
             UiMethods.GuideThroughGame(UiMethods.Options.Wage);
+            // user enters total wage
             int total = ConditionMethods.WaitForNum();
+            // game loop
             while (question == 'y')
-            {
+            {   // show the total funds to user
                 UiMethods.Funds(total);
+                // guides the user what to input
                 UiMethods.GuideThroughGame(UiMethods.Options.Bet);
+                // user is asked to enter bet
                 int bet = ConditionMethods.WaitForBet();
+                // checks to see if bet is not bigger that the total
                 if (bet > total)
                 {
                     Console.WriteLine("Insufficient funds");

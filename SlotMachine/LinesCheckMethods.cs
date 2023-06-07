@@ -16,6 +16,7 @@ namespace SlotMachine
         /// <param name="total">Enter the total of the user</param>
         /// <param name="bet">Enter the bet of the user</param>
         /// <param name="winLine">Enter WIN_LINE const</param>
+        /// <returns>total</returns>
         public static int HorizontalLineCheck(char line, int[,] list, int total, int bet, int winLine)
         {
             int horizontalLinesWon = 0;
@@ -50,6 +51,7 @@ namespace SlotMachine
         /// <param name="total">Enter the total of the user</param>
         /// <param name="bet">Enter the bet of the user</param>
         /// <param name="winLine">Enter WIN_LINE const</param>
+        /// <returns>total</returns>
         public static int VerticalLineCheck(char line, int[,] list, int total, int bet, int winLine)
         {
             int verticalLinesWon = 0;
@@ -76,6 +78,15 @@ namespace SlotMachine
             }
             return total;
         }
+        /// <summary>
+        ///  Checks diagonal lines for win
+        /// </summary>
+        /// <param name="line">Char to check for equality</param>
+        /// <param name="list">Enter the list to be checked</param>
+        /// <param name="total">Enter the total of the user</param>
+        /// <param name="bet">Enter the bet of the user</param>
+        /// <param name="winLine">Enter WIN_LINE const</param>
+        /// <returns>total</returns>
         public static int DiagonalLineCheck(char line, int[,] list, int total, int bet, int winLine)
         {
             int diagonalLinesWon = 0;

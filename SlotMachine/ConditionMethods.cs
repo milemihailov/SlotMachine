@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 namespace SlotMachine
 {
     internal class ConditionMethods
-    {
+    {   /// <summary>
+        /// Checks to see if user has no more funds if so displays game lost
+        /// </summary>
+        /// <param name="total">Total funds</param>
         public static void GameLost(int total)
         {
             if (total == 0)
@@ -14,6 +17,10 @@ namespace SlotMachine
                 UiMethods.LostMessage();
             }
         }
+        /// <summary>
+        /// Wait for the user to enter hes bet
+        /// </summary>
+        /// <returns>Bet</returns>
         public static int WaitForBet()
         {
             bool waitForBet = false;
@@ -29,6 +36,10 @@ namespace SlotMachine
             }
             return bet;
         }
+        /// <summary>
+        /// Wait for the user to enter wage
+        /// </summary>
+        /// <returns>wage</returns>
         public static int WaitForNum()
         {
             int wage = 0;

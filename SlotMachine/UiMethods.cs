@@ -37,6 +37,10 @@ namespace SlotMachine
             char line = Console.ReadKey().KeyChar;
             return line;
         }
+        /// <summary>
+        /// Generates a grid from a 2D array and displays it
+        /// </summary>
+        /// <param name="list">2D Array</param>
         public static void PopulateGrid(int[,] list)
         {
             Random rng = new Random();
