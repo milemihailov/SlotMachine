@@ -10,6 +10,7 @@ namespace SlotMachine
 {
     public static class UiMethods
     {
+        const int MAX_RANDOM_NUM = 2;
         public enum Options
         {
             Bet,
@@ -29,20 +30,26 @@ namespace SlotMachine
         /// <summary>
         /// Asks the user what lines to play.
         /// </summary>
-        public static void IntroToTheGame()
+        public static char IntroToTheGame()
         {
             Console.WriteLine("Choose which lines to play");
             Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
+            char line = Console.ReadKey().KeyChar;
+            return line;
         }
-        /// <summary>
-        /// It is displaying a grid by a given 2D array and 2 parameters.
-        /// </summary>
-        /// <param name="list">2D Array</param>
-        /// <param name="row">Rows</param>
-        /// <param name="column">Columns</param>
-        public static void MakingGrid(int[,] list, int row, int column)
+        public static void PopulateGrid(int[,] list)
         {
-            Console.Write($"{list[row, column]}   ");
+            Random rng = new Random();
+            for (int row = 0; row < list.GetLength(0); row++)
+            {
+                for (int column = 0; column < list.GetLength(1); column++)
+                {
+                    int randomNum = rng.Next(MAX_RANDOM_NUM);
+                    list[row, column] = randomNum;
+                    Console.Write($"{list[row, column]}   ");
+                }
+                Console.WriteLine("\n");
+            }
         }
         /// <summary>
         /// Informs the user of how much he bets.
