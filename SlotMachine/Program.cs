@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using SlotMachine;
+﻿using SlotMachine;
+using System.Linq;
 namespace SlotMachine
 {
     internal class Program
@@ -64,82 +64,11 @@ namespace SlotMachine
                 }
                 UiMethods.UserBet(bet);
                 // horizontal
-                int horizontalLinesWon = 0;
-                int horizontalCount = 0;
-                if (line == 'h')
-                {
-                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
-                    {
-                        for (int column = 0; column < slotNumbers.GetLength(1); column++)
-                        {
-                            if (slotNumbers[row, 0] == slotNumbers[row, column])
-                            {
-                                horizontalCount++;
-                            }
-                            if (horizontalCount == WIN_LINE)
-                            {
-                                horizontalLinesWon++;
-                                total += (horizontalLinesWon * bet);
-                            }
-                        }
-                        horizontalCount = 0;
-                    }
-                    UiMethods.DisplayStats(horizontalLinesWon, total, bet);
-                }
-                // vertical 
-                int verticalLinesWon = 0;
-                int verticalCount = 0;
-                if (line == 'v')
-                {
-                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
-                    {
-                        for (int column = 0; column < slotNumbers.GetLength(1); column++)
-                        {
-                            if (slotNumbers[0, row] == slotNumbers[column, row])
-                            {
-                                verticalCount++;
-                            }
-                            if (verticalCount == WIN_LINE)
-                            {
-                                verticalLinesWon++;
-                                total += (verticalLinesWon * bet);
-                            }
-                        }
-                        verticalCount = 0;
-                    }
-                    UiMethods.DisplayStats(verticalLinesWon, total, bet);
-                }
+                LinesCheckMethods.HorizontalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
+                // vertical
+                LinesCheckMethods.VerticalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
                 // diagonal
-                int diagonalLinesWon = 0;
-                int firstDiagCountLine = 0;
-                int secondDiagonalCountLine = 0;
-                if (line == 'd')
-                {
-                    int column = GRID - 1;
-                    for (int row = 0; row < slotNumbers.GetLength(0); row++)
-                    {
-                        if (slotNumbers[0, 0] == slotNumbers[row, row])
-                        {
-                            firstDiagCountLine++;
-                        }
-                        if (slotNumbers[0, GRID - 1] == slotNumbers[row, column])
-                        {
-                            secondDiagonalCountLine++;
-                        }
-                        if (firstDiagCountLine == WIN_LINE)
-                        {
-                            diagonalLinesWon++;
-                            total += (diagonalLinesWon * bet);
-                        }
-                        if (secondDiagonalCountLine == WIN_LINE)
-                        {
-                            diagonalLinesWon++;
-                            total += (diagonalLinesWon * bet);
-                        }
-                        column--;
-                    }
-                    UiMethods.DisplayStats(diagonalLinesWon, total, bet);
-                }
+                LinesCheckMethods.DiagonalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
                 if (total == 0)
                 {
                     UiMethods.LostMessage();

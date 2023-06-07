@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SlotMachine;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using SlotMachine;
 namespace SlotMachine
 {
     public static class UiMethods
@@ -15,10 +16,7 @@ namespace SlotMachine
             Wage,
             Number
         }
-
-        const int MAX_RANDOM_NUM = 2;
         const int GRID = 3;
-        const int WIN_LINE = 3;
         /// <summary>
         /// It is a welcome message to the game also explains the rules.
         /// </summary>
@@ -36,7 +34,6 @@ namespace SlotMachine
             Console.WriteLine("Choose which lines to play");
             Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
         }
-
         /// <summary>
         /// It is displaying a grid by a given 2D array and 2 parameters.
         /// </summary>
@@ -48,7 +45,7 @@ namespace SlotMachine
             Console.Write($"{list[row, column]}   ");
         }
         /// <summary>
-        /// Informs the user of how much he bets. 
+        /// Informs the user of how much he bets.
         /// </summary>
         /// <param name="bet">Enter the bet of the user:</param>
         public static void UserBet(int bet)
@@ -115,6 +112,5 @@ namespace SlotMachine
         {
             Console.WriteLine($"Your total is: {total}");
         }
-
     }
 }
