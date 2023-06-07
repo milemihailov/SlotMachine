@@ -40,12 +40,8 @@ namespace SlotMachine
                 UiMethods.PopulateGrid(slotNumbers);
                 // user is asked to enter the bet
                 UiMethods.UserBet(bet);
-                // horizontal check
-                total = LinesCheckMethods.HorizontalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
-                // vertical check
-                total = LinesCheckMethods.VerticalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
-                // diagonal check
-                total = LinesCheckMethods.DiagonalLineCheck(line, slotNumbers, total, bet, WIN_LINE);
+                // Checks chosen lines for win
+                total = LinesCheckMethods.LineCheckForWin(line, slotNumbers, total, bet, WIN_LINE);
                 // check to see if there is funds left if not exits the game
                 ConditionMethods.GameLost(total);
                 // asks the user to play again

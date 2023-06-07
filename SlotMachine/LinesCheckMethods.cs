@@ -9,7 +9,7 @@ namespace SlotMachine
     {
         const int GRID = 3;
         /// <summary>
-        /// Checks horizontal lines for win
+        /// Checks lines for win
         /// </summary>
         /// <param name="line">Char to check for equality</param>
         /// <param name="list">Enter the list to be checked</param>
@@ -17,7 +17,7 @@ namespace SlotMachine
         /// <param name="bet">Enter the bet of the user</param>
         /// <param name="winLine">Enter WIN_LINE const</param>
         /// <returns>total</returns>
-        public static int HorizontalLineCheck(char line, int[,] list, int total, int bet, int winLine)
+        public static int LineCheckForWin(char line, int[,] list, int total, int bet, int winLine)
         {
             int horizontalLinesWon = 0;
             int horizontalCount = 0;
@@ -41,19 +41,6 @@ namespace SlotMachine
                 }
                 UiMethods.DisplayStats(horizontalLinesWon, total, bet);
             }
-            return total;
-        }
-        /// <summary>
-        /// Checks vertical lines for win
-        /// </summary>
-        /// <param name="line">Char to check for equality</param>
-        /// <param name="list">Enter the list to be checked</param>
-        /// <param name="total">Enter the total of the user</param>
-        /// <param name="bet">Enter the bet of the user</param>
-        /// <param name="winLine">Enter WIN_LINE const</param>
-        /// <returns>total</returns>
-        public static int VerticalLineCheck(char line, int[,] list, int total, int bet, int winLine)
-        {
             int verticalLinesWon = 0;
             int verticalCount = 0;
             if (line == 'v')
@@ -76,19 +63,6 @@ namespace SlotMachine
                 }
                 UiMethods.DisplayStats(verticalLinesWon, total, bet);
             }
-            return total;
-        }
-        /// <summary>
-        ///  Checks diagonal lines for win
-        /// </summary>
-        /// <param name="line">Char to check for equality</param>
-        /// <param name="list">Enter the list to be checked</param>
-        /// <param name="total">Enter the total of the user</param>
-        /// <param name="bet">Enter the bet of the user</param>
-        /// <param name="winLine">Enter WIN_LINE const</param>
-        /// <returns>total</returns>
-        public static int DiagonalLineCheck(char line, int[,] list, int total, int bet, int winLine)
-        {
             int diagonalLinesWon = 0;
             int firstDiagCountLine = 0;
             int secondDiagonalCountLine = 0;
