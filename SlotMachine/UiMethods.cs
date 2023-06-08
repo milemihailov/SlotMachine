@@ -86,9 +86,9 @@
         /// </summary>
         /// <param name="question"></param>
         /// <returns></returns>
-        public static char AskToReplay(char question)
+        public static char AskToReplay()
         {
-            question = Console.ReadKey().KeyChar;
+            char question = Console.ReadKey().KeyChar;
             Console.Clear();
             return question;
         }

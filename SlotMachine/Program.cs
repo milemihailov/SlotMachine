@@ -50,7 +50,7 @@
                 }
                 UiMethods.ShowReplayMessage();
 
-                question = UiMethods.AskToReplay(question);
+                question = UiMethods.AskToReplay();
             }
         }
     }
