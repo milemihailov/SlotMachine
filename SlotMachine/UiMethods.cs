@@ -12,7 +12,7 @@
         /// <summary>
         /// It is a welcome message to the game also explains the rules.
         /// </summary>
-        public static void WelcomeMessage()
+        public static void ShowWelcomeMessage()
         {
             Console.WriteLine("Hello you can choose to play 'Horizontal', 'Vertical' and 'Diagonal' lines.");
             Console.WriteLine($"You can play 1 line for $1 and up to ${Program.GRID} and up to {Program.GRID} lines for 'Horizontal' and 'Vertical' up to 2 lines for 'Diagonal'");
@@ -21,12 +21,19 @@
         /// <summary>
         /// Asks the user what lines to play.
         /// </summary>
-        public static char IntroToTheGame()
+        public static void ShorIntroMessage()
         {
             Console.WriteLine("Choose which lines to play");
             Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
-            char line = Console.ReadKey().KeyChar;
-            return line;
+        }
+        /// <summary>
+        /// Asks the user to enter a char value
+        /// </summary>
+        /// <returns>returns the character entered</returns>
+        public static char AskForChar()
+        {
+            char value = Console.ReadKey().KeyChar;
+            return value;
         }
         /// <summary>
         /// Generates a grid from a 2D array and displays it
@@ -50,7 +57,7 @@
         /// Informs the user of how much he bets.
         /// </summary>
         /// <param name="bet">Enter the bet of the user:</param>
-        public static void UserBet(int bet)
+        public static void ShowUserBet(int bet)
         {
             Console.WriteLine($"\nYou have bet ${bet}");
         }
@@ -82,7 +89,7 @@
         /// <summary>
         /// Informs the user he lost and exits the game.
         /// </summary>
-        public static void LostMessage()
+        public static void ShowLostMessage()
         {
             Console.WriteLine("You lost!");
         }
@@ -90,7 +97,7 @@
         /// Guides the user what to enter:
         /// </summary>
         /// <param name="mode"></param>
-        public static void GuideThroughGame(Options mode)
+        public static void ShowGuideMessage(Options mode)
         {
             switch (mode)
             {
@@ -109,7 +116,7 @@
         /// Informs the user of his total funds
         /// </summary>
         /// <param name="total">Total funds of the user</param>
-        public static void Funds(int total)
+        public static void ShowFunds(int total)
         {
             Console.WriteLine($"Your total is: {total}");
         }

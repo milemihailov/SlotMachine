@@ -9,17 +9,17 @@
             int[,] slotNumbers = new int[GRID, GRID];
             char question = 'y';
 
-            UiMethods.WelcomeMessage();
+            UiMethods.ShowWelcomeMessage();
 
-            UiMethods.GuideThroughGame(UiMethods.Options.Wage);
+            UiMethods.ShowGuideMessage(UiMethods.Options.Wage);
 
             int total = ConditionMethods.WaitForNum();
 
             while (question == 'y')
             {
-                UiMethods.Funds(total);
+                UiMethods.ShowFunds(total);
 
-                UiMethods.GuideThroughGame(UiMethods.Options.Bet);
+                UiMethods.ShowGuideMessage(UiMethods.Options.Bet);
 
                 int bet = ConditionMethods.WaitForBet();
 
@@ -31,18 +31,21 @@
                 total -= bet;
                 Console.Clear();
 
-                char line = UiMethods.IntroToTheGame();
+                UiMethods.ShorIntroMessage();
+
+                char line = UiMethods.AskForChar();
+
                 Console.Clear();
 
                 UiMethods.PopulateGrid(slotNumbers);
 
-                UiMethods.UserBet(bet);
+                UiMethods.ShowUserBet(bet);
 
                 total = LinesCheckMethods.LineCheckForWin(line, slotNumbers, total, bet, WIN_LINE);
 
                 if (total == 0)
                 {
-                    UiMethods.LostMessage();
+                    UiMethods.ShowLostMessage();
                     break;
                 }
                 question = UiMethods.Replay(question);

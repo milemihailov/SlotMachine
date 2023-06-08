@@ -16,7 +16,7 @@
                 waitForBet = int.TryParse(inputBetNum, out bet);
                 if (!waitForBet)
                 {
-                    UiMethods.GuideThroughGame(UiMethods.Options.Number);
+                    UiMethods.ShowGuideMessage(UiMethods.Options.Number);
                 }
             }
             return bet;
@@ -35,7 +35,7 @@
                 numEntered = int.TryParse(inputWageNum, out wage);
                 if (!numEntered)
                 {
-                    UiMethods.GuideThroughGame(UiMethods.Options.Number);
+                    UiMethods.ShowGuideMessage(UiMethods.Options.Number);
                 }
             }
             return wage;
