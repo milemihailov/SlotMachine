@@ -44,7 +44,7 @@
 
                 UiMethods.ShowUserBet(bet);
 
-                total = LogicMethods.LineCheckForWin(line, slotNumbers, total, bet, WIN_LINE);
+                total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet, WIN_LINE);
 
                 if (total == 0)
                 {

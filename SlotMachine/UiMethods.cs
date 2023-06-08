@@ -64,10 +64,10 @@
         /// <param name="linesWon">Enter the lines won:</param>
         /// <param name="total">Enter the total funds:</param>
         /// <param name="bet">Enter the user's bet</param>
-        public static void DisplayStats(int linesWon, int total, int bet)
+        public static void ShowStats(int linesWon, int total, int profit)
         {
             Console.WriteLine($"You have {linesWon} winning lines.");
-            Console.WriteLine($"You have won ${linesWon * bet}");
+            Console.WriteLine($"You have won ${profit}");
             Console.WriteLine($"Your total is ${total}");
         }
         /// <summary>
