@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace SlotMachine
+﻿namespace SlotMachine
 {
     internal class ConditionMethods
-    {   /// <summary>
-        /// Checks to see if user has no more funds if so displays game lost
-        /// </summary>
-        /// <param name="total">Total funds</param>
-        public static void GameLost(int total)
-        {
-            if (total == 0)
-            {
-                UiMethods.LostMessage();
-            }
-        }
+    {
         /// <summary>
         /// Wait for the user to enter hes bet
         /// </summary>

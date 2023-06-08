@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace SlotMachine
+﻿namespace SlotMachine
 {
     internal class LinesCheckMethods
     {
-        const int GRID = 3;
         /// <summary>
         /// Checks lines for win
         /// </summary>
@@ -18,7 +12,7 @@ namespace SlotMachine
         /// <param name="winLine">Enter WIN_LINE const</param>
         /// <returns>total</returns>
         public static int LineCheckForWin(char line, int[,] list, int total, int bet, int winLine)
-        {
+        {   //horizontal check
             int horizontalLinesWon = 0;
             int horizontalCount = 0;
             if (line == 'h')
@@ -40,7 +34,7 @@ namespace SlotMachine
                     horizontalCount = 0;
                 }
                 UiMethods.DisplayStats(horizontalLinesWon, total, bet);
-            }
+            }//vertical check
             int verticalLinesWon = 0;
             int verticalCount = 0;
             if (line == 'v')
@@ -62,20 +56,20 @@ namespace SlotMachine
                     verticalCount = 0;
                 }
                 UiMethods.DisplayStats(verticalLinesWon, total, bet);
-            }
+            }//diagonal check
             int diagonalLinesWon = 0;
             int firstDiagCountLine = 0;
             int secondDiagonalCountLine = 0;
             if (line == 'd')
             {
-                int column = GRID - 1;
+                int column = Program.GRID - 1;
                 for (int row = 0; row < list.GetLength(0); row++)
                 {
                     if (list[0, 0] == list[row, row])
                     {
                         firstDiagCountLine++;
                     }
-                    if (list[0, GRID - 1] == list[row, column])
+                    if (list[0, Program.GRID - 1] == list[row, column])
                     {
                         secondDiagonalCountLine++;
                     }
