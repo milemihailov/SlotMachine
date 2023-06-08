@@ -21,7 +21,7 @@
         /// <summary>
         /// Asks the user what lines to play.
         /// </summary>
-        public static void ShorIntroMessage()
+        public static void ShowIntroMessage()
         {
             Console.WriteLine("Choose which lines to play");
             Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
@@ -76,12 +76,18 @@
         /// <summary>
         /// Asks if the user wants to play more.
         /// </summary>
-        /// <param name="question"></param>
-        /// <returns>What had user entered.</returns>
-        public static char Replay(char question)
+        public static void ShowReplayMessage()
         {
             Console.WriteLine("Would you like to play another one?");
             Console.WriteLine("Choose 'y' to continue any other key to exit ");
+        }
+        /// <summary>
+        /// takes input from user
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
+        public static char AskToReplay(char question)
+        {
             question = Console.ReadKey().KeyChar;
             Console.Clear();
             return question;
@@ -119,6 +125,14 @@
         public static void ShowFunds(int total)
         {
             Console.WriteLine($"Your total is: {total}");
+        }
+        public static void ShowNotEnoughFunds()
+        {
+            Console.WriteLine("Insufficient funds");
+        }
+        public static void ClearDisplay()
+        {
+            Console.Clear();
         }
     }
 }

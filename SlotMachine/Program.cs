@@ -25,17 +25,17 @@
 
                 if (bet > total)
                 {
-                    Console.WriteLine("Insufficient funds");
+                    UiMethods.ShowNotEnoughFunds();
                     continue;
                 }
                 total -= bet;
-                Console.Clear();
+                UiMethods.ClearDisplay();
 
-                UiMethods.ShorIntroMessage();
+                UiMethods.ShowIntroMessage();
 
                 char line = UiMethods.AskForChar();
 
-                Console.Clear();
+                UiMethods.ClearDisplay();
 
                 UiMethods.PopulateGrid(slotNumbers);
 
@@ -48,7 +48,9 @@
                     UiMethods.ShowLostMessage();
                     break;
                 }
-                question = UiMethods.Replay(question);
+                UiMethods.ShowReplayMessage();
+
+                question = UiMethods.AskToReplay(question);
             }
         }
     }
