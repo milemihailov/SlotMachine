@@ -2,7 +2,7 @@
 {
     public static class UiMethods
     {
-        const int MAX_RANDOM_NUM = 2;
+        public const int MAX_RANDOM_NUM = 2;
         public enum Options
         {
             Bet,
@@ -36,18 +36,15 @@
             return value;
         }
         /// <summary>
-        /// Generates a grid from a 2D array and displays it
+        /// Displays 3x3 grid from 2D Array
         /// </summary>
         /// <param name="list">2D Array</param>
-        public static void PopulateGrid(int[,] list)
+        public static void ShowGrid(int[,] list)
         {
-            Random rng = new Random();
             for (int row = 0; row < list.GetLength(0); row++)
             {
                 for (int column = 0; column < list.GetLength(1); column++)
                 {
-                    int randomNum = rng.Next(MAX_RANDOM_NUM);
-                    list[row, column] = randomNum;
                     Console.Write($"{list[row, column]}   ");
                 }
                 Console.WriteLine("\n");

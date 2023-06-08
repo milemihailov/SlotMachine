@@ -2,6 +2,7 @@
 {
     public static class Program
     {
+        public static readonly Random rng = new Random();
         public const int GRID = 3;
         const int WIN_LINE = 3;
         static void Main(string[] args)
@@ -13,7 +14,7 @@
 
             UiMethods.ShowGuideMessage(UiMethods.Options.Wage);
 
-            int total = ConditionMethods.WaitForNum();
+            int total = UiMethods.WaitForNum();
 
             while (question == 'y')
             {
@@ -21,7 +22,7 @@
 
                 UiMethods.ShowGuideMessage(UiMethods.Options.Bet);
 
-                int bet = ConditionMethods.WaitForBet();
+                int bet = UiMethods.WaitForBet();
 
                 if (bet > total)
                 {
@@ -37,11 +38,13 @@
 
                 UiMethods.ClearDisplay();
 
-                UiMethods.PopulateGrid(slotNumbers);
+                LogicMethods.PopulateGrid(slotNumbers);
+
+                UiMethods.ShowGrid(slotNumbers);
 
                 UiMethods.ShowUserBet(bet);
 
-                total = LinesCheckMethods.LineCheckForWin(line, slotNumbers, total, bet, WIN_LINE);
+                total = LogicMethods.LineCheckForWin(line, slotNumbers, total, bet, WIN_LINE);
 
                 if (total == 0)
                 {

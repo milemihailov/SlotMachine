@@ -1,6 +1,6 @@
 ﻿namespace SlotMachine
 {
-    internal class LinesCheckMethods
+    internal class LogicMethods
     {
         /// <summary>
         /// Checks lines for win
@@ -88,6 +88,21 @@
                 UiMethods.DisplayStats(diagonalLinesWon, total, bet);
             }
             return total;
+        }
+        /// <summary>
+        /// Makes a grid 3x3 from 2D array
+        /// </summary>
+        /// <param name="list">2D array</param>
+        public static void PopulateGrid(int[,] list)
+        {
+            for (int row = 0; row < list.GetLength(0); row++)
+            {
+                for (int column = 0; column < list.GetLength(1); column++)
+                {
+                    int randomNum = Program.rng.Next(UiMethods.MAX_RANDOM_NUM);
+                    list[row, column] = randomNum;
+                }
+            }
         }
     }
 }
