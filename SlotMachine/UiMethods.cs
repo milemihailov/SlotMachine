@@ -63,7 +63,7 @@
         /// </summary>
         /// <param name="linesWon">Enter the lines won:</param>
         /// <param name="total">Enter the total funds:</param>
-        /// <param name="bet">Enter the user's bet</param>
+        /// <param name="profit">Enter the user's profit</param>
         public static void ShowStats(int linesWon, int total, int profit)
         {
             Console.WriteLine($"You have {linesWon} winning lines.");

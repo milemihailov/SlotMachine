@@ -13,43 +13,33 @@
         /// <returns>total</returns>
         public static int ShowResultsFromTheLinesPlayed(char line, int[,] list, int total, int bet, int winLine)
         {
+            int linesWon = 0;
             int profit;
             //horizontal check
 
             if (line == 'h')
             {
-                int horizontalLinesWon = HorizontalCheckForWin(list, winLine);
-
-                total = TotalFunds(total, horizontalLinesWon, bet);
-
-                profit = ProfitCalculation(horizontalLinesWon, bet);
-
-                UiMethods.ShowStats(horizontalLinesWon, total, profit);
+                linesWon = HorizontalCheckForWin(list, winLine);
             }
             //vertical check
 
             if (line == 'v')
             {
-                int verticalLinesWon = VerticalCheckForWin(list, winLine);
-
-                total = TotalFunds(total, verticalLinesWon, bet);
-
-                profit = ProfitCalculation(verticalLinesWon, bet);
-
-                UiMethods.ShowStats(verticalLinesWon, total, profit);
+                linesWon = VerticalCheckForWin(list, winLine);
             }
             //diagonal check
 
             if (line == 'd')
             {
-                int diagonalLinesWon = DiagonalCheckForWin(list, winLine);
-
-                total = TotalFunds(total, diagonalLinesWon, bet);
-
-                profit = ProfitCalculation(diagonalLinesWon, bet);
-
-                UiMethods.ShowStats(diagonalLinesWon, total, profit);
+                linesWon = DiagonalCheckForWin(list, winLine);
             }
+
+            total = TotalFunds(total, linesWon, bet);
+
+            profit = ProfitCalculation(linesWon, bet);
+
+            UiMethods.ShowStats(linesWon, total, profit);
+
             return total;
         }
         /// <summary>
