@@ -152,7 +152,7 @@
             {
                 for (int column = 0; column < list.GetLength(1); column++)
                 {
-                    int randomNum = Program.rng.Next(Program.MAX_RANDOM_NUM);
+                    int randomNum = Program.rng.Next(Program.MAX_RANDOM_NUM + 1);
                     list[row, column] = randomNum;
                 }
             }
