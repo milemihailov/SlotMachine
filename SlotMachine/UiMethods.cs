@@ -2,7 +2,6 @@
 {
     public static class UiMethods
     {
-        public const int MAX_RANDOM_NUM = 2;
         public enum Options
         {
             Bet,

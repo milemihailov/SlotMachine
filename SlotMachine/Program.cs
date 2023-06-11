@@ -4,11 +4,13 @@
     {
         public static readonly Random rng = new Random();
         public const int GRID = 3;
+        public const char PLAY_MORE = 'y';
         const int WIN_LINE = 3;
+        public const int MAX_RANDOM_NUM = 2;
         static void Main(string[] args)
         {
             int[,] slotNumbers = new int[GRID, GRID];
-            char question = 'y';
+            char question = PLAY_MORE;
 
             UiMethods.ShowWelcomeMessage();
 
@@ -16,7 +18,7 @@
 
             int total = UiMethods.WaitForNum();
 
-            while (question == 'y')
+            while (question == PLAY_MORE)
             {
                 UiMethods.ShowFunds(total);
 

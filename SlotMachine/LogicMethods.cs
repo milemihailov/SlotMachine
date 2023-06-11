@@ -2,6 +2,9 @@
 {
     internal class LogicMethods
     {
+        public const char HORIZONTAL_LINE = 'y';
+        public const char VERTICAL_LINE = 'v';
+        public const char DIAGONAL_LINE = 'd';
         /// <summary>
         /// Checks lines for win
         /// </summary>
@@ -15,21 +18,15 @@
         {
             int linesWon = 0;
             int profit;
-            //horizontal check
+            //horizontal and vertical check
 
-            if (line == 'h')
+            if (line == HORIZONTAL_LINE || line == VERTICAL_LINE)
             {
-                linesWon = HorizontalCheckForWin(list, winLine);
-            }
-            //vertical check
-
-            if (line == 'v')
-            {
-                linesWon = VerticalCheckForWin(list, winLine);
+                linesWon = CheckForWin(list, winLine, line);
             }
             //diagonal check
 
-            if (line == 'd')
+            if (line == DIAGONAL_LINE)
             {
                 linesWon = DiagonalCheckForWin(list, winLine);
             }
@@ -48,26 +45,30 @@
         /// <param name="list"></param>
         /// <param name="winLine"></param>
         /// <returns>how many horizontal lines were won</returns>
-        public static int HorizontalCheckForWin(int[,] list, int winLine)
+        public static int CheckForWin(int[,] list, int winLine, char line)
         {
-            int horizontalLinesWon = 0;
-            int horizontalCount = 0;
+            int linesWon = 0;
+            int count = 0;
             for (int row = 0; row < list.GetLength(0); row++)
             {
                 for (int column = 0; column < list.GetLength(1); column++)
                 {
-                    if (list[row, 0] == list[row, column])
+                    if (line == VERTICAL_LINE)
                     {
-                        horizontalCount++;
+                        count += VerticalCheckForWin(list, row, column);
                     }
-                    if (horizontalCount == winLine)
+                    if (line == DIAGONAL_LINE)
                     {
-                        horizontalLinesWon++;
+                        count += HorizontalCheckForWin(list, row, column);
+                    }
+                    if (count == winLine)
+                    {
+                        linesWon++;
                     }
                 }
-                horizontalCount = 0;
+                count = 0;
             }
-            return horizontalLinesWon;
+            return linesWon;
         }
         /// <summary>
         /// checks for win lines in vertical lines
@@ -75,26 +76,23 @@
         /// <param name="list"></param>
         /// <param name="winLine"></param>
         /// <returns>how many vertical lines were won</returns>
-        public static int VerticalCheckForWin(int[,] list, int winLine)
+        public static int VerticalCheckForWin(int[,] list, int row, int column)
         {
-            int verticalLinesWon = 0;
-            int verticalCount = 0;
-            for (int row = 0; row < list.GetLength(0); row++)
+            int count = 0;
+            if (list[0, row] == list[column, row])
             {
-                for (int column = 0; column < list.GetLength(1); column++)
-                {
-                    if (list[0, row] == list[column, row])
-                    {
-                        verticalCount++;
-                    }
-                    if (verticalCount == winLine)
-                    {
-                        verticalLinesWon++;
-                    }
-                }
-                verticalCount = 0;
+                count++;
             }
-            return verticalLinesWon;
+            return count;
+        }
+        public static int HorizontalCheckForWin(int[,] list, int row, int column)
+        {
+            int count = 0;
+            if (list[row, 0] == list[row, column])
+            {
+                count++;
+            }
+            return count;
         }
         /// <summary>
         /// checks for diagonal lines win
@@ -165,7 +163,7 @@
             {
                 for (int column = 0; column < list.GetLength(1); column++)
                 {
-                    int randomNum = Program.rng.Next(UiMethods.MAX_RANDOM_NUM);
+                    int randomNum = Program.rng.Next(Program.MAX_RANDOM_NUM);
                     list[row, column] = randomNum;
                 }
             }
