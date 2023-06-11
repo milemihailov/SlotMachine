@@ -74,7 +74,6 @@
         /// checks for win lines in vertical lines
         /// </summary>
         /// <param name="list"></param>
-        /// <param name="winLine"></param>
         /// <returns>how many vertical lines were won</returns>
         public static int VerticalCheckForWin(int[,] list, int row, int column)
         {
@@ -85,6 +84,11 @@
             }
             return count;
         }
+        /// <summary>
+        /// checks for win lines in horizontal lines
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns>how many horizontal lines were won</returns>
         public static int HorizontalCheckForWin(int[,] list, int row, int column)
         {
             int count = 0;
