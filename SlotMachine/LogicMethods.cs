@@ -47,22 +47,22 @@
         /// <summary>
         /// checks for win lines in horizontal lines
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="slotNumbers"></param>
         /// <param name="winLine"></param>
         /// <returns>how many horizontal lines were won</returns>
-        public static int CheckForWin(int[,] list, char line)
+        public static int CheckForWin(int[,] slotNumbers, char line)
         {
             int linesWon = 0;
             int count = 0;
-            for (int row = 0; row < list.GetLength(0); row++)
+            for (int row = 0; row < slotNumbers.GetLength(0); row++)
             {
-                for (int column = 0; column < list.GetLength(1); column++)
+                for (int column = 0; column < slotNumbers.GetLength(1); column++)
                 {
-                    if (line == VERTICAL_LINE && list[0, row] == list[column, row])
+                    if (line == VERTICAL_LINE && slotNumbers[0, row] == slotNumbers[column, row])
                     {
                         count++;
                     }
-                    if (line == HORIZONTAL_LINE && list[row, 0] == list[row, column])
+                    if (line == HORIZONTAL_LINE && slotNumbers[row, 0] == slotNumbers[row, column])
                     {
                         count++;
                     }
@@ -80,22 +80,22 @@
         /// <summary>
         /// checks for diagonal lines win
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="slotNumbers"></param>
         /// <param name="winLine"></param>
         /// <returns>how many diagonaal lines were won</returns>
-        public static int DiagonalCheckForWin(int[,] list)
+        public static int DiagonalCheckForWin(int[,] slotNumbers)
         {
             int diagonalLinesWon = 0;
             int firstDiagCountLine = 0;
             int secondDiagonalCountLine = 0;
             int column = Program.GRID - 1;
-            for (int row = 0; row < list.GetLength(0); row++)
+            for (int row = 0; row < slotNumbers.GetLength(0); row++)
             {
-                if (list[0, 0] == list[row, row])
+                if (slotNumbers[0, 0] == slotNumbers[row, row])
                 {
                     firstDiagCountLine++;
                 }
-                if (list[0, Program.GRID - 1] == list[row, column])
+                if (slotNumbers[0, Program.GRID - 1] == slotNumbers[row, column])
                 {
                     secondDiagonalCountLine++;
                 }
@@ -145,15 +145,15 @@
         /// <summary>
         /// Makes a grid 3x3 from 2D array
         /// </summary>
-        /// <param name="list">2D array</param>
-        public static void PopulateGrid(int[,] list)
+        /// <param name="slotNumbers">2D array</param>
+        public static void PopulateGrid(int[,] slotNumbers)
         {
-            for (int row = 0; row < list.GetLength(0); row++)
+            for (int row = 0; row < slotNumbers.GetLength(0); row++)
             {
-                for (int column = 0; column < list.GetLength(1); column++)
+                for (int column = 0; column < slotNumbers.GetLength(1); column++)
                 {
                     int randomNum = Program.rng.Next(Program.MAX_RANDOM_NUM + 1);
-                    list[row, column] = randomNum;
+                    slotNumbers[row, column] = randomNum;
                 }
             }
         }
