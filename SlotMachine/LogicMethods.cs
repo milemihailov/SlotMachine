@@ -2,19 +2,20 @@
 {
     internal class LogicMethods
     {
-        public const char HORIZONTAL_LINE = 'y';
+        public const char HORIZONTAL_LINE = 'h';
         public const char VERTICAL_LINE = 'v';
         public const char DIAGONAL_LINE = 'd';
+        public const int WIN_LINE = 3;
         /// <summary>
         /// Checks lines for win
         /// </summary>
         /// <param name="line">Char to check for equality</param>
-        /// <param name="list">Enter the list to be checked</param>
+        /// <param name="slotNumbers">Enter the list to be checked</param>
         /// <param name="total">Enter the total of the user</param>
         /// <param name="bet">Enter the bet of the user</param>
         /// <param name="winLine">Enter WIN_LINE const</param>
         /// <returns>total</returns>
-        public static int ShowResultsFromTheLinesPlayed(char line, int[,] list, int total, int bet, int winLine)
+        public static int ShowResultsFromTheLinesPlayed(char line, int[,] slotNumbers, int total, int bet)
         {
             int linesWon = 0;
             int profit;
@@ -22,13 +23,13 @@
 
             if (line == HORIZONTAL_LINE || line == VERTICAL_LINE)
             {
-                linesWon = CheckForWin(list, winLine, line);
+                linesWon = CheckForWin(slotNumbers, line);
             }
             //diagonal check
 
             if (line == DIAGONAL_LINE)
             {
-                linesWon = DiagonalCheckForWin(list, winLine);
+                linesWon = DiagonalCheckForWin(slotNumbers);
             }
 
             total = TotalFunds(total, linesWon, bet);
@@ -45,7 +46,7 @@
         /// <param name="list"></param>
         /// <param name="winLine"></param>
         /// <returns>how many horizontal lines were won</returns>
-        public static int CheckForWin(int[,] list, int winLine, char line)
+        public static int CheckForWin(int[,] list, char line)
         {
             int linesWon = 0;
             int count = 0;
@@ -53,15 +54,15 @@
             {
                 for (int column = 0; column < list.GetLength(1); column++)
                 {
-                    if (line == VERTICAL_LINE)
+                    if (line == VERTICAL_LINE && list[0, row] == list[column, row])
                     {
-                        count += VerticalCheckForWin(list, row, column);
+                        count++;
                     }
-                    if (line == DIAGONAL_LINE)
+                    if (line == HORIZONTAL_LINE && list[row, 0] == list[row, column])
                     {
-                        count += HorizontalCheckForWin(list, row, column);
+                        count++;
                     }
-                    if (count == winLine)
+                    if (count == WIN_LINE)
                     {
                         linesWon++;
                     }
@@ -71,40 +72,12 @@
             return linesWon;
         }
         /// <summary>
-        /// checks for win lines in vertical lines
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns>how many vertical lines were won</returns>
-        public static int VerticalCheckForWin(int[,] list, int row, int column)
-        {
-            int count = 0;
-            if (list[0, row] == list[column, row])
-            {
-                count++;
-            }
-            return count;
-        }
-        /// <summary>
-        /// checks for win lines in horizontal lines
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns>how many horizontal lines were won</returns>
-        public static int HorizontalCheckForWin(int[,] list, int row, int column)
-        {
-            int count = 0;
-            if (list[row, 0] == list[row, column])
-            {
-                count++;
-            }
-            return count;
-        }
-        /// <summary>
         /// checks for diagonal lines win
         /// </summary>
         /// <param name="list"></param>
         /// <param name="winLine"></param>
         /// <returns>how many diagonaal lines were won</returns>
-        public static int DiagonalCheckForWin(int[,] list, int winLine)
+        public static int DiagonalCheckForWin(int[,] list)
         {
             int diagonalLinesWon = 0;
             int firstDiagCountLine = 0;
@@ -120,11 +93,11 @@
                 {
                     secondDiagonalCountLine++;
                 }
-                if (firstDiagCountLine == winLine)
+                if (firstDiagCountLine == WIN_LINE)
                 {
                     diagonalLinesWon++;
                 }
-                if (secondDiagonalCountLine == winLine)
+                if (secondDiagonalCountLine == WIN_LINE)
                 {
                     diagonalLinesWon++;
                 }

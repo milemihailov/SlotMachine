@@ -5,7 +5,6 @@
         public static readonly Random rng = new Random();
         public const int GRID = 3;
         public const char PLAY_MORE = 'y';
-        const int WIN_LINE = 3;
         public const int MAX_RANDOM_NUM = 2;
         static void Main(string[] args)
         {
@@ -46,7 +45,7 @@
 
                 UiMethods.ShowUserBet(bet);
 
-                total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet, WIN_LINE);
+                total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet);
 
                 if (total == 0)
                 {
