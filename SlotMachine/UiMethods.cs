@@ -8,6 +8,8 @@
             Wage,
             Number
         }
+
+
         /// <summary>
         /// It is a welcome message to the game also explains the rules.
         /// </summary>
@@ -17,6 +19,8 @@
             Console.WriteLine($"You can play 1 line for $1 and up to ${Program.GRID} and up to {Program.GRID} lines for 'Horizontal' and 'Vertical' up to 2 lines for 'Diagonal'");
             Console.WriteLine("Choose your wager and lines to play!");
         }
+
+
         /// <summary>
         /// Asks the user what lines to play.
         /// </summary>
@@ -25,6 +29,8 @@
             Console.WriteLine("Choose which lines to play");
             Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
         }
+
+
         /// <summary>
         /// Asks the user to enter a char value
         /// </summary>
@@ -34,6 +40,8 @@
             char value = Console.ReadKey().KeyChar;
             return value;
         }
+
+
         /// <summary>
         /// Displays 3x3 grid from 2D Array
         /// </summary>
@@ -49,6 +57,8 @@
                 Console.WriteLine("\n");
             }
         }
+
+
         /// <summary>
         /// Informs the user of how much he bets.
         /// </summary>
@@ -57,6 +67,8 @@
         {
             Console.WriteLine($"\nYou have bet ${bet}");
         }
+
+
         /// <summary>
         /// It is displaying the outcome of the game if user won or lost and how much.
         /// </summary>
@@ -69,6 +81,8 @@
             Console.WriteLine($"You have won ${profit}");
             Console.WriteLine($"Your total is ${total}");
         }
+
+
         /// <summary>
         /// Asks if the user wants to play more.
         /// </summary>
@@ -77,6 +91,8 @@
             Console.WriteLine("Would you like to play another one?");
             Console.WriteLine("Choose 'y' to continue any other key to exit ");
         }
+
+
         /// <summary>
         /// takes input from user
         /// </summary>
@@ -88,6 +104,8 @@
             Console.Clear();
             return question;
         }
+
+
         /// <summary>
         /// Informs the user he lost and exits the game.
         /// </summary>
@@ -95,6 +113,8 @@
         {
             Console.WriteLine("You lost!");
         }
+
+
         /// <summary>
         /// Guides the user what to enter:
         /// </summary>
@@ -114,6 +134,8 @@
                     break;
             }
         }
+
+
         /// <summary>
         /// Informs the user of his total funds
         /// </summary>
@@ -130,6 +152,8 @@
         {
             Console.Clear();
         }
+
+
         /// <summary>
         /// Wait for the user to enter hes bet
         /// </summary>
@@ -149,6 +173,8 @@
             }
             return bet;
         }
+
+
         /// <summary>
         /// Wait for the user to enter wage
         /// </summary>

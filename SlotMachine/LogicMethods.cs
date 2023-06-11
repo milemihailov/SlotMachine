@@ -6,6 +6,8 @@
         public const char VERTICAL_LINE = 'v';
         public const char DIAGONAL_LINE = 'd';
         public const int WIN_LINE = 3;
+
+
         /// <summary>
         /// Checks lines for win
         /// </summary>
@@ -40,6 +42,8 @@
 
             return total;
         }
+
+
         /// <summary>
         /// checks for win lines in horizontal lines
         /// </summary>
@@ -71,6 +75,8 @@
             }
             return linesWon;
         }
+
+
         /// <summary>
         /// checks for diagonal lines win
         /// </summary>
@@ -105,6 +111,8 @@
             }
             return diagonalLinesWon;
         }
+
+
         /// <summary>
         /// Calculates the total of your funds
         /// </summary>
@@ -120,6 +128,8 @@
             }
             return total += (linesWon * bet);
         }
+
+
         /// <summary>
         /// Calculates the profit from the lines won
         /// </summary>
@@ -130,6 +140,8 @@
         {
             return linesWon * bet;
         }
+
+
         /// <summary>
         /// Makes a grid 3x3 from 2D array
         /// </summary>
