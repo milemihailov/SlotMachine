@@ -4,8 +4,8 @@
     {
         public static readonly Random rng = new Random();
         public const int GRID = 3;
-        public const char PLAY_MORE = 'y';
         public const int MAX_RANDOM_NUM = 2;
+        public const char PLAY_MORE = 'y';
         static void Main(string[] args)
         {
             int[,] slotNumbers = new int[GRID, GRID];
