@@ -27,7 +27,7 @@
         public static void ShowIntroMessage()
         {
             Console.WriteLine("Choose which lines to play");
-            Console.WriteLine("'h' for 'Horizontal', 'v' for 'Vertical', 'd' for 'Diagonal'");
+            Console.WriteLine($"{LogicMethods.HORIZONTAL_LINE} for 'Horizontal', {LogicMethods.VERTICAL_LINE} for 'Vertical',{LogicMethods.DIAGONAL_LINE} for 'Diagonal'");
         }
 
 
@@ -89,7 +89,7 @@
         public static void ShowReplayMessage()
         {
             Console.WriteLine("Would you like to play another one?");
-            Console.WriteLine("Choose 'y' to continue any other key to exit ");
+            Console.WriteLine($"Choose {Program.PLAY_MORE} to continue, any other key to exit ");
         }
 
 
