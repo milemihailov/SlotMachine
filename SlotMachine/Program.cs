@@ -15,7 +15,7 @@
 
             UiMethods.ShowGuideMessage(UiMethods.Options.Wage);
 
-            int total = UiMethods.WaitForNum();
+            int total = UiMethods.WaitForBet();
 
             while (question == PLAY_MORE)
             {

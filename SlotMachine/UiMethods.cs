@@ -155,7 +155,7 @@
 
 
         /// <summary>
-        /// Wait for the user to enter hes bet
+        /// Wait for the user to enter his bet
         /// </summary>
         /// <returns>Bet</returns>
         public static int WaitForBet()
@@ -172,27 +172,6 @@
                 }
             }
             return bet;
-        }
-
-
-        /// <summary>
-        /// Wait for the user to enter wage
-        /// </summary>
-        /// <returns>wage</returns>
-        public static int WaitForNum()
-        {
-            int wage = 0;
-            bool numEntered = false;
-            while (!numEntered)
-            {
-                string inputWageNum = Console.ReadLine();
-                numEntered = int.TryParse(inputWageNum, out wage);
-                if (!numEntered)
-                {
-                    UiMethods.ShowGuideMessage(UiMethods.Options.Number);
-                }
-            }
-            return wage;
         }
     }
 }
