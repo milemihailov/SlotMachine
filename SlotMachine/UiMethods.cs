@@ -75,9 +75,8 @@
         /// <param name="linesWon">Enter the lines won:</param>
         /// <param name="total">Enter the total funds:</param>
         /// <param name="profit">Enter the user's profit</param>
-        public static void ShowStats(int linesWon, int total, int profit)
+        public static void ShowStats(int profit, int total)
         {
-            Console.WriteLine($"You have {linesWon} winning lines.");
             Console.WriteLine($"You have won ${profit}");
             Console.WriteLine($"Your total is ${total}");
         }
@@ -158,7 +157,7 @@
         /// Wait for the user to enter his bet
         /// </summary>
         /// <returns>Bet</returns>
-        public static int WaitForBet()
+        public static int AskForNum()
         {
             bool waitForBet = false;
             int bet = 0;

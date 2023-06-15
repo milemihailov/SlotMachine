@@ -6,46 +6,42 @@
         public const int GRID = 3;
         public const int MAX_RANDOM_NUM = 2;
         public const char PLAY_MORE = 'y';
+
         static void Main(string[] args)
         {
             int[,] slotNumbers = new int[GRID, GRID];
-            char question = PLAY_MORE;
 
             UiMethods.ShowWelcomeMessage();
-
             UiMethods.ShowGuideMessage(UiMethods.Options.Wage);
 
-            int total = UiMethods.WaitForBet();
+            int total = UiMethods.AskForNum();
 
+            char question = PLAY_MORE;
             while (question == PLAY_MORE)
             {
                 UiMethods.ShowFunds(total);
-
                 UiMethods.ShowGuideMessage(UiMethods.Options.Bet);
 
-                int bet = UiMethods.WaitForBet();
-
+                int bet = UiMethods.AskForNum();
                 if (bet > total)
                 {
                     UiMethods.ShowNotEnoughFunds();
                     continue;
                 }
                 total -= bet;
-                UiMethods.ClearDisplay();
 
+                UiMethods.ClearDisplay();
                 UiMethods.ShowIntroMessage();
 
                 char line = UiMethods.AskForChar();
 
-                UiMethods.ClearDisplay();
-
                 LogicMethods.PopulateGrid(slotNumbers);
 
+                UiMethods.ClearDisplay();
                 UiMethods.ShowGrid(slotNumbers);
-
                 UiMethods.ShowUserBet(bet);
-
                 total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet);
+                UiMethods.ShowStats(LogicMethods.ProfitCalculation(LogicMethods.CheckForWin(slotNumbers, line), bet), total);
 
                 if (total == 0)
                 {

@@ -20,7 +20,6 @@
         public static int ShowResultsFromTheLinesPlayed(char line, int[,] slotNumbers, int total, int bet)
         {
             int linesWon = 0;
-            int profit;
             //horizontal and vertical check
 
             if (line == HORIZONTAL_LINE || line == VERTICAL_LINE)
@@ -33,14 +32,7 @@
             {
                 linesWon = DiagonalCheckForWin(slotNumbers);
             }
-
-            total = TotalFunds(total, linesWon, bet);
-
-            profit = ProfitCalculation(linesWon, bet);
-
-            UiMethods.ShowStats(linesWon, total, profit);
-
-            return total;
+            return TotalFunds(total, linesWon, bet); ;
         }
 
 
@@ -126,7 +118,7 @@
             {
                 total += bet;
             }
-            return total += (linesWon * bet);
+            return total + linesWon * bet;
         }
 
 
