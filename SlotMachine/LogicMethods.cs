@@ -17,7 +17,7 @@
         /// <param name="bet">Enter the bet of the user</param>
         /// <param name="winLine">Enter WIN_LINE const</param>
         /// <returns>total</returns>
-        public static int ShowResultsFromTheLinesPlayed(char line, int[,] slotNumbers, int total, int bet)
+        public static int LinesWon(char line, int[,] slotNumbers)
         {
             int linesWon = 0;
 
@@ -32,7 +32,7 @@
             {
                 linesWon = DiagonalCheckForWin(slotNumbers);
             }
-            return CalculateTotalFunds(total, linesWon, bet); ;
+            return linesWon;
         }
 
 

@@ -4,7 +4,7 @@
     {
         public static readonly Random rng = new Random();
         public const int GRID = 3;
-        public const int MAX_RANDOM_NUM = 2;
+        public const int MAX_RANDOM_NUM = 1;
         public const char PLAY_MORE = 'y';
 
         static void Main(string[] args)
@@ -40,8 +40,12 @@
                 UiMethods.ClearDisplay();
                 UiMethods.ShowGrid(slotNumbers);
                 UiMethods.ShowUserBet(bet);
-                total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet);
-                UiMethods.ShowStats(LogicMethods.CalculateProfit(LogicMethods.CheckForWin(slotNumbers, line), bet), total);
+
+                int linesWon = LogicMethods.LinesWon(line, slotNumbers);
+                total = LogicMethods.CalculateTotalFunds(total, linesWon, bet);
+                int profit = LogicMethods.CalculateProfit(linesWon, bet);
+
+                UiMethods.ShowStats(profit, total);
 
                 if (total == 0)
                 {
