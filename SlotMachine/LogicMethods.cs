@@ -32,7 +32,7 @@
             {
                 linesWon = DiagonalCheckForWin(slotNumbers);
             }
-            return TotalFunds(total, linesWon, bet); ;
+            return CalculateTotalFunds(total, linesWon, bet); ;
         }
 
 
@@ -112,7 +112,7 @@
         /// <param name="linesWon"></param>
         /// <param name="bet"></param>
         /// <returns>total funds </returns>
-        public static int TotalFunds(int total, int linesWon, int bet)
+        public static int CalculateTotalFunds(int total, int linesWon, int bet)
         {
             // checks to see if user won any lines if so returns the bet plus the total
             if (linesWon > 0)
@@ -129,7 +129,7 @@
         /// <param name="linesWon"></param>
         /// <param name="bet"></param>
         /// <returns> profit made </returns>
-        public static int ProfitCalculation(int linesWon, int bet)
+        public static int CalculateProfit(int linesWon, int bet)
         {
             return linesWon * bet;
         }

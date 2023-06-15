@@ -41,7 +41,7 @@
                 UiMethods.ShowGrid(slotNumbers);
                 UiMethods.ShowUserBet(bet);
                 total = LogicMethods.ShowResultsFromTheLinesPlayed(line, slotNumbers, total, bet);
-                UiMethods.ShowStats(LogicMethods.ProfitCalculation(LogicMethods.CheckForWin(slotNumbers, line), bet), total);
+                UiMethods.ShowStats(LogicMethods.CalculateProfit(LogicMethods.CheckForWin(slotNumbers, line), bet), total);
 
                 if (total == 0)
                 {
