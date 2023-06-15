@@ -20,14 +20,14 @@
         public static int ShowResultsFromTheLinesPlayed(char line, int[,] slotNumbers, int total, int bet)
         {
             int linesWon = 0;
-            //horizontal and vertical check
 
+            //horizontal and vertical check
             if (line == HORIZONTAL_LINE || line == VERTICAL_LINE)
             {
                 linesWon = CheckForWin(slotNumbers, line);
             }
-            //diagonal check
 
+            //diagonal check
             if (line == DIAGONAL_LINE)
             {
                 linesWon = DiagonalCheckForWin(slotNumbers);
@@ -114,6 +114,7 @@
         /// <returns>total funds </returns>
         public static int TotalFunds(int total, int linesWon, int bet)
         {
+            // checks to see if user won any lines if so returns the bet plus the total
             if (linesWon > 0)
             {
                 total += bet;
